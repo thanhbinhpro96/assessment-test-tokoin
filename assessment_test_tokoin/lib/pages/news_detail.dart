@@ -1,6 +1,8 @@
 import 'package:assessment_test_tokoin/models/news.dart';
-import 'package:assessment_test_tokoin/settings/helper.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsDetail extends StatefulWidget {
 
@@ -39,21 +41,31 @@ class _NewsDetailState extends State<NewsDetail> {
                   // News description
                   Text(widget.newsItem.description, style: const TextStyle(fontSize: 16, color: Colors.black54)),
                   const SizedBox(height: 10),
-                  Column(
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // News author
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          const Icon(Icons.person),
-                          const SizedBox(width: 10),
-                          Text(
-                            widget.newsItem.author,
-                            overflow: TextOverflow.ellipsis,
-                            softWrap: true,
-                          )
-                        ],
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width*0.4,
+                        child: RichText(
+                          text: TextSpan(
+                            children: [
+                              const WidgetSpan(
+                                child: Icon(Icons.person)
+                              ),
+                              const WidgetSpan(
+                                child: SizedBox(width: 10)
+                              ),
+                              WidgetSpan(
+                                child: Padding(
+                                  padding: const EdgeInsets.only(bottom: 3),
+                                  child: Text(widget.newsItem.author, style: const TextStyle(color: Colors.black))
+                                )
+                              ),
+                            ]
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 10),
                       // News publish date
@@ -62,7 +74,7 @@ class _NewsDetailState extends State<NewsDetail> {
                         children: [
                           const Icon(Icons.timer),
                           const SizedBox(width: 10),
-                          Text(formatDateTime(widget.newsItem.publishedAt))
+                          Text(DateFormat("dd/MM/yyyy - HH:mm").format(widget.newsItem.publishedAt))
                         ],
                       ),
                     ],
@@ -70,6 +82,19 @@ class _NewsDetailState extends State<NewsDetail> {
                   // News content
                   const SizedBox(height: 20),
                   Text(widget.newsItem.content),
+                  // News source
+                  const SizedBox(height: 20),
+                  const Text("Source:"),
+                  GestureDetector(
+                    onTap: () async {
+                      if(await canLaunch(widget.newsItem.url)) {
+                        await launch(widget.newsItem.url);
+                      } else {
+                        Fluttertoast.showToast(msg: 'Could not launch $widget.newsItem.url');
+                      }
+                    },
+                    child: Text(widget.newsItem.url, style: const TextStyle(color: Colors.blue, decoration: TextDecoration.underline)),
+                  ),
                 ],
               ),
             )
