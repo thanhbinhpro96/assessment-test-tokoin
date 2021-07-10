@@ -1,16 +1,31 @@
-# assessment_test_tokoin
+# TOKOIN Assessment News Application
 
-A new Flutter project.
+This application is developed to serve as an assessment test for the position of Flutter developer.
+The application is a news providing application. All data are fetched from https://newsapi.org/
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Before running the code, please kindly enter your API key for newsapi.org located at ***/lib/settings/const.dart***
 
-A few resources to get you started if this is your first Flutter project:
+This application consists of three tabs: **Headlines**, **News** and **Profile**
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### 1) Headlines
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This section demonstrate latest news from default region **us**. The news are paginated and each page is limited to 10 news item.
+Scrolling to the bottom will trigger the application to load the next page.
+
+Clicking on the news will navigate user to the news detail page.
+
+### 2) News
+
+This section shows news based on selected category. User can only choose one category at a time. *load more* feature is also available for this section.
+
+Clicking on the news will navigate user to the news detail page.
+
+### 3) Profile
+
+This section allows user to register an account and login with their account. All accounts information is stored on local storage.
+
+## Demo
+
+![Screenshot](examples/demo.gif)
