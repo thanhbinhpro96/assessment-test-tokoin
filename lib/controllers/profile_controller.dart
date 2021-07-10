@@ -34,6 +34,12 @@ class ProfileController extends ControllerMVC {
             "password": password
           });
           Navigator.pop(context);
+        } else {
+          Fluttertoast.showToast(
+            msg: "Credentials are incorrect!",
+            backgroundColor: Colors.red,
+            textColor: Theme.of(context).colorScheme.onPrimary
+          );
         }
       }
     });
