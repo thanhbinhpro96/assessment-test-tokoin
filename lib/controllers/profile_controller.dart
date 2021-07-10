@@ -63,13 +63,27 @@ class ProfileController extends ControllerMVC {
       } else {
         List<String>? _userList = prefs.getStringList("users");
         List<String>? _usernameList = [];
+        // Get username list from local storage to check if the entered username has already taken.
         for (var _user in _userList!) {
           _usernameList.add(_user.split(" - ").first);
         }
+        // If account has already existed, please login
         if(_usernameList.contains(username)) {
           Fluttertoast.showToast(
-            msg: "Account has already exists. Please login!",
+            msg: "Account has already existed. Please login!",
           );
+        } else {
+          // If account is not existed, create a new record an save to local storage
+          _userList.add("$username - $password");
+          prefs.setStringList("users", _userList);
+          _provider.setUser({
+            "username": username,
+            "password": password
+          });
+          Fluttertoast.showToast(
+            msg: "Account successfully registered! Logging you in...",
+          );
+          Navigator.pop(context);
         }
       }
     });
