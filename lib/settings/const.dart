@@ -1,7 +1,7 @@
 import 'package:assessment_test_tokoin/models/category.dart';
 
 // ignore: constant_identifier_names
-const String API_KEY = "02461fdec83448ba9bbc59593f413a17";
+const String API_KEY = "ENTER YOUR API KEY HERE";
 // ignore: constant_identifier_names
 const String API_URL = "https://newsapi.org/v2";
 List<Category> newsCategories = [
