@@ -16,16 +16,22 @@ Scrolling to the bottom will trigger the application to load the next page.
 
 Clicking on the news will navigate user to the news detail page.
 
+![Screenshot](/examples/headlines.png)
+![Screenshot](/examples/news_detail.png)
+
 ### 2) News
 
 This section shows news based on selected category. User can only choose one category at a time. *load more* feature is also available for this section.
 
 Clicking on the news will navigate user to the news detail page.
 
+![Screenshot](/examples/news_by_category.png)
+
 ### 3) Profile
 
 This section allows user to register an account and login with their account. All accounts information is stored on local storage.
 
-## Demo
-
-![Screenshot](examples/demo.gif)
+![Screenshot](/examples/logged_in.png)
+![Screenshot](/examples/not_logged_in.png)
+![Screenshot](/examples/login_bottom_sheet.png)
+![Screenshot](/examples/register_bottom_sheet.png)
